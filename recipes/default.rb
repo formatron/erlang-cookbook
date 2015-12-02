@@ -1,19 +1,12 @@
 version = node['formatron_erlang']['version']
-checksum = node['formatron_erlang']['checksum']
 
-cache = Chef::Config[:file_cache_path]
-deb = File.join cache, 'erlang.deb'
-deb_url = "http://packages.erlang-solutions.com/erlang-solutions_#{version}_all.deb"
-
-remote_file deb do
-  source deb_url
-  checksum checksum
+apt_repository 'erlang' do
+  uri 'http://packages.erlang-solutions.com/ubuntu'
+  components ['contrib']
+  distribution node['lsb']['codename']
+  key 'http://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc'
 end
 
-dpkg_package 'erlang_solutions' do
-  source deb
+package 'erlang' do
+  version version
 end
-
-include_recipe 'apt::default'
-
-package 'erlang'
