@@ -1,4 +1,7 @@
 name 'formatron_erlang'
 version '0.1.0'
+description 'Formatron Erlang cookbook'
+source_url 'https://github.com/formatron/erlang-cookbook'
+issues_url 'https://github.com/formatron/erlang-cookbook/issues'
 supports 'ubuntu'
 depends 'apt'
